@@ -1,0 +1,52 @@
+# Environment
+.env
+.env.backup
+.env.local
+.env.production
+
+# PHP & Composer
+/vendor
+composer.lock
+auth.json
+
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# Laravel
+/bootstrap/cache/*
+/storage/logs/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/framework/cache/*
+/storage/*.key
+/storage/pail
+/public/build
+/public/hot
+/public/storage
+
+# Testing
+.phpunit.result.cache
+.phpunit.cache
+coverage/
+
+# IDE & Editor
+.vscode
+.idea
+.nova
+.fleet
+.zed
+.phpactor.json
+_ide_helper.php
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Development
+*.log
+Homestead.json
+Homestead.yaml

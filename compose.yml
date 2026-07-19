@@ -1,0 +1,10 @@
+services:
+    app:
+        image: php:8.4-cli
+        volumes:
+            - .:/app
+        working_dir: /app
+        ports:
+            - "8888:8888"
+            - "5173:5173"
+        command: php artisan serve --host=0.0.0.0 --port=8888

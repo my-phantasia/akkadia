@@ -1,4 +1,16 @@
-### Steps
+# Akkadia
+
+This repository contains the project submission for Advanced Web - Final Semester Exam.
+
+### Members
+
+* **Haiqal A.** ([@Haiqal](https://github.com/Isvane)) | **Project Lead & Fullstack Engineer**
+* **Dafa A.** ([@Dafa](https://github.com/Dafa-Web-progaming)) | **Frontend Developer & Technical Writer**
+* **Arif R.** ([@Arif](https://github.com/arifrahmanpratama1)) | **Manager & Logistics**
+* **Adi N.** ([@Adi](https://github.com/3NME)) | **Presentation**
+* **Fatih.** ([@Fatih](https://github.com/fatihterbaru)) | **Presentation**
+
+### Getting Started
 
 ```bash
 # 1. Clone the repo

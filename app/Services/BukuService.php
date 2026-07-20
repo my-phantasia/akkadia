@@ -1,5 +1,7 @@
 <?php
 
+// app/Services/BukuService.php
+
 namespace App\Services;
 
 use App\Models\Buku;
@@ -8,7 +10,6 @@ use Illuminate\Support\Facades\Storage;
 
 class BukuService
 {
-    // Req #3: Upload cover buku
     public function uploadCover(UploadedFile $file): string
     {
         return $file->store('covers', 'public');
@@ -19,5 +20,19 @@ class BukuService
         if ($path && Storage::disk('public')->exists($path)) {
             Storage::disk('public')->delete($path);
         }
+    }
+
+    // Tambahan logika Update dengan SoC
+    public function updateBuku(Buku $buku, array $data, ?UploadedFile $newCover = null): Buku
+    {
+        if ($newCover) {
+            // Hapus cover lama terlebih dahulu
+            $this->deleteCover($buku->cover_path);
+            // Upload cover baru
+            $data['cover_path'] = $this->uploadCover($newCover);
+        }
+
+        $buku->update($data);
+        return $buku;
     }
 }

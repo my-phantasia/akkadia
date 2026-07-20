@@ -9,17 +9,16 @@ Route::get('/', function () {
     return redirect()->route('buku.index');
 });
 
-// Proteksi rute dengan middleware auth agar petugas harus login terlebih dahulu
+// routes/web.php
+
 Route::middleware(['auth'])->group(function () {
+    // Menggunakan Resource Route untuk otomatisasi CRUD penuh (Req #1)
+    Route::resource('buku', BukuController::class);
+    Route::resource('kategori', KategoriController::class);
+    Route::resource('anggota', AnggotaController::class);
 
-    // Rute untuk Manajemen & Pencarian Buku (Req #1 & #4)
-    Route::get('/buku', [BukuController::class, 'index'])->name('buku.index');
-    Route::post('/buku', [BukuController::class, 'store'])->name('buku.store');
-
-    // Rute untuk Transaksi Peminjaman & Pengembalian (Req #1 & #2)
+    // Transaksi Peminjaman & Pengembalian (Req #1 & #2)
+    Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman.index');
     Route::post('/peminjaman', [PeminjamanController::class, 'store'])->name('peminjaman.store');
     Route::patch('/peminjaman/{peminjaman}/kembalikan', [PeminjamanController::class, 'kembalikan'])->name('peminjaman.kembalikan');
-
-    // Rute untuk Dashboard/Profil Anggota & Rekomendasi (Req #6)
-    Route::get('/anggota/{anggota}', [AnggotaController::class, 'show'])->name('anggota.show');
 });

@@ -1,40 +1,39 @@
 <?php
+// app/Http/Controllers/BukuController.php
 
 namespace App\Http\Controllers;
 
 use App\Models\Buku;
 use App\Services\BukuService;
-use App\Http\Requests\StoreBukuRequest;
-use Illuminate\Http\Request;
+use App\Http\Requests\UpdateBukuRequest; // Buat request baru untuk update jika rules berbeda
 
 class BukuController extends Controller
 {
-    // Constructor Property Promotion (PHP 8+)
     public function __construct(private readonly BukuService $bukuService) {}
 
-    // Req #1 (Read) & Req #4 (Search, Filter, Pagination)
-    public function index(Request $request)
-    {
-        $bukus = Buku::with('kategori')
-            ->search($request->query('search')) // Menggunakan scope dari Model
-            ->filterKategori($request->query('kategori_id'))
-            ->paginate(10)
-            ->withQueryString(); // Mempertahankan query string saat pagination
+    // ... method index & store yang kemarin ...
 
-        return view('buku.index', compact('bukus'));
+    // Req #1: Update Buku
+    public function update(UpdateBukuRequest $request, Buku $buku)
+    {
+        $this->bukuService->updateBuku(
+            $buku,
+            $request->validated(),
+            $request->file('cover')
+        );
+
+        return redirect()->route('buku.index')->with('success', 'Buku berhasil diperbarui.');
     }
 
-    // Req #1 (Create) & Req #3 (Upload)
-    public function store(StoreBukuRequest $request)
+    // Req #1 & #3: Delete Buku beserta covernya
+    public function destroy(Buku $buku)
     {
-        $data = $request->validated();
+        // Hapus file fisiknya via service
+        $this->bukuService->deleteCover($buku->cover_path);
 
-        if ($request->hasFile('cover')) {
-            $data['cover_path'] = $this->bukuService->uploadCover($request->file('cover'));
-        }
+        // Hapus data di DB
+        $buku->delete();
 
-        Buku::create($data);
-
-        return redirect()->route('buku.index')->with('success', 'Buku berhasil ditambahkan.');
+        return redirect()->route('buku.index')->with('success', 'Buku berhasil dihapus.');
     }
 }

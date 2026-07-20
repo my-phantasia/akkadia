@@ -20,7 +20,11 @@ class PeminjamanController extends Controller
             ->latest()
             ->paginate(10);
 
-        return view('peminjaman.index', compact('peminjamans'));
+        // Lempar data anggota dan buku (yang stoknya > 0) ke view untuk form modal
+        $anggotas = \App\Models\Anggota::orderBy('nama', 'asc')->get();
+        $bukus = \App\Models\Buku::where('stok', '>', 0)->orderBy('judul', 'asc')->get();
+
+        return view('peminjaman.index', compact('peminjamans', 'anggotas', 'bukus'));
     }
 
     // CREATE

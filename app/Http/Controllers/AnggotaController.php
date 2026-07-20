@@ -1,3 +1,5 @@
+<?php
+
 // app/Http/Controllers/AnggotaController.php
 namespace App\Http\Controllers;
 
@@ -31,7 +33,8 @@ class AnggotaController extends Controller
     public function show(Anggota $anggota)
     {
         $anggota->load('peminjamans.detailPeminjamans.buku');
-        $rekomendasiBuku = $this->rekomendasiService->getRekomendasiUntukAnggota($anggota->id);
+        // Casting id ke (int) untuk memastikan tipe datanya cocok dengan requirement Service
+        $rekomendasiBuku = $this->rekomendasiService->getRekomendasiUntukAnggota((int) $anggota->id);
 
         return view('anggota.show', compact('anggota', 'rekomendasiBuku'));
     }

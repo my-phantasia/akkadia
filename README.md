@@ -1,6 +1,7 @@
 # Akkadia
 
-This repository contains the project submission for Advanced Web - Final Semester Exam.
+This repository contains the project submission for Advanced Web - Final Semester Exam.  
+Thank you, Pak ([@Amir](https://github.com/AMIRUDIN5592)) for teaching us 😄
 
 ### Members
 
@@ -9,6 +10,8 @@ This repository contains the project submission for Advanced Web - Final Semeste
 * **Arif R.** ([@Arif](https://github.com/arifrahmanpratama1)) | **Manager & Logistics**
 * **Adi N.** ([@Adi](https://github.com/3NME)) | **Presentation**
 * **Fatih.** ([@Fatih](https://github.com/fatihterbaru)) | **Presentation**
+
+_For better insight, please inspect the git commit history_
 
 ### Getting Started
 

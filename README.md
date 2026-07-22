@@ -3,6 +3,8 @@
 This repository contains the project submission for Advanced Web - Final Semester Exam.  
 Thank you, Pak ([@Amir](https://github.com/AMIRUDIN5592)) for teaching us 😄
 
+![](docs/page-buku.png)
+
 ### Members
 
 * **Haiqal A.** ([@Haiqal](https://github.com/Isvane)) | **Project Lead & Fullstack Engineer**
